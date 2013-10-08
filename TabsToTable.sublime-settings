@@ -1,3 +1,4 @@
 {
-	"table_separator": "  "
+	"col_separator": "  ",
+	"col_align": "left"
 }

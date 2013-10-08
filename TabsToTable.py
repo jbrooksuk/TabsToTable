@@ -8,7 +8,8 @@ s = sublime.load_settings('TabsToTable.sublime-settings')
 
 class Pref:
     def load(self):
-        Pref.table_separator = s.get('table_separator', '  ')
+        Pref.col_separator = s.get('col_separator', '  ')
+        Pref.col_align = s.get('col_align', 'right')
 
 
 Pref = Pref()
@@ -63,8 +64,14 @@ class TabsToTable(sublime_plugin.TextCommand):
         # Separate columns with 2 spaces
         formatted = []
         for row in content:
-            separation = [s.rjust(n) for (s, n) in zip(row, widths)]
-            formatted.append(Pref.table_separator.join(separation))
+            if Pref.col_align == 'left':
+                separation = [s.ljust(n) for (s, n) in zip(row, widths)]
+            elif Pref.col_align == 'right':
+                separation = [s.rjust(n) for (s, n) in zip(row, widths)]
+            else:
+                raise Exception("Unknown alignment setting")
+
+            formatted.append(Pref.col_separator.join(separation))
 
         # Return the formatted table.
         return '\n'.join(formatted)
