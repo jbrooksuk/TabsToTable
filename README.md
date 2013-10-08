@@ -1,6 +1,9 @@
 # Tabs To Table
 Converts tabular data into a glorious table format.
 
+# Installation
+Available in Package Control, just search *TabsToTable*!
+
 # Example
 ```
 Position	Elevation
