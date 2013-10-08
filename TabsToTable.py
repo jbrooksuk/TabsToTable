@@ -3,6 +3,18 @@ import sublime_plugin
 import re
 
 
+s = sublime.load_settings('TabsToTable.sublime-settings')
+
+class Pref:
+    def load(self):
+        Pref.table_separator = s.get('table_separator', '  ')
+
+
+Pref = Pref()
+Pref.load()
+s.add_on_change('reload', lambda:Pref.load())
+
+
 class TabsToTable(sublime_plugin.TextCommand):
     def run(self, edit):
         sels = self.view.sel()
@@ -51,7 +63,7 @@ class TabsToTable(sublime_plugin.TextCommand):
         formatted = []
         for row in content:
             separation = [s.rjust(n) for (s, n) in zip(row, widths)]
-            formatted.append('  '.join(separation))
+            formatted.append(Pref.table_separator.join(separation))
 
         # Return the formatted table.
         return '\n'.join(formatted)
