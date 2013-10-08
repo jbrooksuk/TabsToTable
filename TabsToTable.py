@@ -5,6 +5,7 @@ import re
 
 s = sublime.load_settings('TabsToTable.sublime-settings')
 
+
 class Pref:
     def load(self):
         Pref.table_separator = s.get('table_separator', '  ')
@@ -12,7 +13,7 @@ class Pref:
 
 Pref = Pref()
 Pref.load()
-s.add_on_change('reload', lambda:Pref.load())
+s.add_on_change('reload', lambda: Pref.load())
 
 
 class TabsToTable(sublime_plugin.TextCommand):
