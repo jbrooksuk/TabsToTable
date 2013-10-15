@@ -45,12 +45,14 @@ class TabsToTable(sublime_plugin.TextCommand):
         # Keep track of the number of cells per row.
         columns = 0
         content = []
+
+        if use_spaces:
+            splitby = ' ' * tab_size
+        else:
+            splitby = '\t'
+
         for line in lines:
-            if use_spaces:
-                splitby = " " * tab_size
-                cells = line.split(splitby)
-            else:
-                cells = line.split('\t')
+            cells = line.split(splitby)
 
             if len(cells) > columns:
                 columns = len(cells)
