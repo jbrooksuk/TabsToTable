@@ -36,12 +36,22 @@ class TabsToTable(sublime_plugin.TextCommand):
         lines = text.splitlines()
         rows = len(lines)
 
+        # Get the actual view settings
+        settings = self.view.settings()
+        tab_size = int(settings.get('tab_size', 8))
+        use_spaces = settings.get('translate_tabs_to_spaces')
+
         # Extract the content into a matrix.
         # Keep track of the number of cells per row.
         columns = 0
         content = []
         for line in lines:
-            cells = line.split('\t')
+            if use_spaces:
+                splitby = " " * tab_size
+                cells = line.split(splitby)
+            else:
+                cells = line.split('\t')
+
             if len(cells) > columns:
                 columns = len(cells)
             linecontent = [x.strip() for x in cells]
@@ -70,7 +80,6 @@ class TabsToTable(sublime_plugin.TextCommand):
                 separation = [s.rjust(n) for (s, n) in zip(row, widths)]
             else:
                 separation = [s.ljust(n) for (s, n) in zip(row, widths)]
-            
 
             formatted.append(Pref.col_separator.join(separation))
 
