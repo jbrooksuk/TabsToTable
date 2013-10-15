@@ -55,6 +55,7 @@ Valid settings are:
 
 - `col_separator` - How are columns split up? For easier to read tables, I suggest using ` | `
 - `col_align` - aligns text to the "left" or "right" of the column.
+- `col_wrap` - wraps the left and right side of each column with the `col_separator` value. **This value includes no whitespace.**
 
 # Props
 Big props go to [Dr. Drang](http://www.leancrew.com/all-this/) for his post, [Updated Text Tables bundle](http://www.leancrew.com/all-this/2008/09/updated-text-tables-bundle-for-textmate/).
