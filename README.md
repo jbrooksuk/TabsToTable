@@ -53,7 +53,7 @@ TabsToTable is customisable!
 
 Valid settings are:
 
-- `col_separator` - How are columns split up? For easier to read tables, I suggest using ` | `
+- `col_separator` - How are columns split up?
 - `col_align` - aligns text to the "left" or "right" of the column.
 - `col_wrap` - wraps the left and right side of each column with the `col_separator` value. **This value includes no whitespace.**
 

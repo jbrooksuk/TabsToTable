@@ -1,5 +1,5 @@
 {
-	"col_separator": " | ",
+	"col_separator": "  ",
 	"col_align": "left",
-	"col_wrap": true
+	"col_wrap": false
 }
