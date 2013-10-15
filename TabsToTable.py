@@ -16,7 +16,6 @@ Pref = Pref()
 Pref.load()
 s.add_on_change('reload', lambda: Pref.load())
 
-
 class TabsToTable(sublime_plugin.TextCommand):
     def run(self, edit):
         sels = self.view.sel()
@@ -77,11 +76,16 @@ class TabsToTable(sublime_plugin.TextCommand):
         formatted = []
         for row in content:
             if Pref.col_align == 'left':
+                # Left align columns
                 separation = [s.ljust(n) for (s, n) in zip(row, widths)]
             elif Pref.col_align == 'right':
+                # Align columns to the right
                 separation = [s.rjust(n) for (s, n) in zip(row, widths)]
             else:
+                # Left by default
                 separation = [s.ljust(n) for (s, n) in zip(row, widths)]
+
+            print (separation)
 
             formatted.append(Pref.col_separator.join(separation))
 
