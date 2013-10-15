@@ -68,6 +68,9 @@ class TabsToTable(sublime_plugin.TextCommand):
                 separation = [s.ljust(n) for (s, n) in zip(row, widths)]
             elif Pref.col_align == 'right':
                 separation = [s.rjust(n) for (s, n) in zip(row, widths)]
+            else:
+                separation = [s.ljust(n) for (s, n) in zip(row, widths)]
+            
 
             formatted.append(Pref.col_separator.join(separation))
 
