@@ -10,6 +10,7 @@ class Pref:
     def load(self):
         Pref.col_separator = s.get('col_separator', '  ')
         Pref.col_align = s.get('col_align', 'right')
+        Pref.col_wrap = s.get('col_wrap', True)
 
 
 Pref = Pref()
@@ -74,20 +75,26 @@ class TabsToTable(sublime_plugin.TextCommand):
         # Add whitespace to make all the columns the same width.
         # Separate columns with 2 spaces
         formatted = []
+        separation = []
+
+        wrapstart = ''
+        wrapend = ''
+        if Pref.col_wrap:
+            wrapstart = Pref.col_separator.strip()
+            wrapend = Pref.col_separator.strip()
+
         for row in content:
             if Pref.col_align == 'left':
                 # Left align columns
-                separation = [s.ljust(n) for (s, n) in zip(row, widths)]
+                colList = wrapstart + Pref.col_separator.join([s.ljust(n) for (s, n) in zip(row, widths)]) + wrapend
             elif Pref.col_align == 'right':
                 # Align columns to the right
-                separation = [s.rjust(n) for (s, n) in zip(row, widths)]
+                colList = wrapstart + Pref.col_separator.join([s.rjust(n) for (s, n) in zip(row, widths)]) + wrapend
             else:
                 # Left by default
-                separation = [s.ljust(n) for (s, n) in zip(row, widths)]
+                colList = wrapstart + Pref.col_separator.join([s.ljust(n) for (s, n) in zip(row, widths)]) + wrapend
 
-            print (separation)
-
-            formatted.append(Pref.col_separator.join(separation))
+            formatted.append(colList)
 
         # Return the formatted table.
         return '\n'.join(formatted)
