@@ -86,13 +86,13 @@ class TabsToTable(sublime_plugin.TextCommand):
         for row in content:
             if Pref.col_align == 'left':
                 # Left align columns
-                colList = wrapstart + Pref.col_separator.join([s.ljust(n) for (s, n) in zip(row, widths)]) + wrapend
+                colList = Pref.col_separator.join([s.ljust(n) for (s, n) in zip(row, widths)])
             elif Pref.col_align == 'right':
                 # Align columns to the right
-                colList = wrapstart + Pref.col_separator.join([s.rjust(n) for (s, n) in zip(row, widths)]) + wrapend
+                colList = Pref.col_separator.join([s.rjust(n) for (s, n) in zip(row, widths)])
             else:
                 # Left by default
-                colList = wrapstart + Pref.col_separator.join([s.ljust(n) for (s, n) in zip(row, widths)]) + wrapend
+                colList = Pref.col_separator.join([s.ljust(n) for (s, n) in zip(row, widths)])
 
             formatted.append(colList)
 
