@@ -1,4 +1,4 @@
-# Tabs To Table
+# Tabs To Table [![Gittip](http://badgr.co/gittip/jbrooksuk.png)](https://www.gittip.com/jbrooksuk/)
 Converts tabular data into a glorious table format.
 
 # Installation
